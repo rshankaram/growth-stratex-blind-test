@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'No prompt provided' });
   }
 
-  const maxTokens = type === 'final' ? 1200 : 400;
+  const maxTokens = type === 'final' ? 1200 : type === 'prefill' ? 300 : 500;
 
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
